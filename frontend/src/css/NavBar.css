@@ -1,0 +1,60 @@
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+div.App {
+    height: 100%;
+    background-image: url("../img/background.jpg");
+    background-size: 100% 100%;
+}
+
+nav {
+    background-color: #003999;
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    padding-left: 2vw;
+    height: 80%;
+}
+
+li {
+    display: inline;
+    padding-left: 10%;
+    color: white;
+}
+
+nav > a, li > a {
+    font-size: 2vw;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+.react-icons {
+    size: 2vw;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85);
+    width: 80%;
+    height: 88%;
+    margin: auto;
+}
+
+nav>a {
+    position: absolute;
+    right: 20px;
+}

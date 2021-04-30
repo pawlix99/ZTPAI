@@ -1,0 +1,36 @@
+.history {
+    height: 100%;
+    overflow: auto;
+}
+
+.history>h1 {
+    margin: 0;
+    padding-left: 10%;
+    padding-top: 4%;
+}
+
+.reservations {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.reservation {
+    background-color: white;
+    border: solid 5px gray;
+    height: 15vh;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.reservation>img {
+    height: 90%;
+    padding-left: 1%;
+}
+
+.place {
+    padding-left: 15%;
+    width: 40%;
+}

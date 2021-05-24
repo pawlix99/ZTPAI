@@ -15,14 +15,15 @@ div.login + div.App {
     padding-left: 0;
 }
 
-div.authorization {
+.authorization {
     width: 30%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.login > form {
+.authorization > form {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -35,4 +36,9 @@ div.authorization {
 .login > button {
     height: 10%;
     width: 50%;
+}
+
+.authorization > a {
+    color: white;
+    text-decoration: none;
 }

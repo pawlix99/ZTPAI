@@ -29,5 +29,22 @@ class TypeOfRoom
      */
     private $typeOfRoom;
 
+    public function getIdTypeOfRoom(): ?int
+    {
+        return $this->idTypeOfRoom;
+    }
+
+    public function getTypeOfRoom(): ?int
+    {
+        return $this->typeOfRoom;
+    }
+
+    public function setTypeOfRoom(int $typeOfRoom): self
+    {
+        $this->typeOfRoom = $typeOfRoom;
+
+        return $this;
+    }
+
 
 }

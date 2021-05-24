@@ -4,6 +4,9 @@ import logo from "./img/logo.svg";
 import {FaPowerOff} from "react-icons/fa";
 import './css/NavBar.css';
 function NavBar() {
+    if(!localStorage.getItem('token')){
+        window.location.href = "/login";
+    }
     return(
         <nav>
             <img src={logo}></img>

@@ -49,5 +49,46 @@ class Rooms
      */
     private $idTypeOfRoom;
 
+    public function getIdRoom(): ?int
+    {
+        return $this->idRoom;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getIdAccomodation(): ?Accomodations
+    {
+        return $this->idAccomodation;
+    }
+
+    public function setIdAccomodation(?Accomodations $idAccomodation): self
+    {
+        $this->idAccomodation = $idAccomodation;
+
+        return $this;
+    }
+
+    public function getIdTypeOfRoom(): ?TypeOfRoom
+    {
+        return $this->idTypeOfRoom;
+    }
+
+    public function setIdTypeOfRoom(?TypeOfRoom $idTypeOfRoom): self
+    {
+        $this->idTypeOfRoom = $idTypeOfRoom;
+
+        return $this;
+    }
+
 
 }

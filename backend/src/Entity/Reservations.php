@@ -66,5 +66,70 @@ class Reservations
      */
     private $idUser;
 
+    public function getIdReservation(): ?int
+    {
+        return $this->idReservation;
+    }
+
+    public function getSinceWhen(): ?\DateTimeInterface
+    {
+        return $this->sinceWhen;
+    }
+
+    public function setSinceWhen(\DateTimeInterface $sinceWhen): self
+    {
+        $this->sinceWhen = $sinceWhen;
+
+        return $this;
+    }
+
+    public function getUntilWhen(): ?\DateTimeInterface
+    {
+        return $this->untilWhen;
+    }
+
+    public function setUntilWhen(\DateTimeInterface $untilWhen): self
+    {
+        $this->untilWhen = $untilWhen;
+
+        return $this;
+    }
+
+    public function getIdAccomodation(): ?Accomodations
+    {
+        return $this->idAccomodation;
+    }
+
+    public function setIdAccomodation(?Accomodations $idAccomodation): self
+    {
+        $this->idAccomodation = $idAccomodation;
+
+        return $this;
+    }
+
+    public function getIdTypeOfRoom(): ?TypeOfRoom
+    {
+        return $this->idTypeOfRoom;
+    }
+
+    public function setIdTypeOfRoom(?TypeOfRoom $idTypeOfRoom): self
+    {
+        $this->idTypeOfRoom = $idTypeOfRoom;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?Users
+    {
+        return $this->idUser;
+    }
+
+    public function setIdUser(?Users $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
 
 }

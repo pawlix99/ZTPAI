@@ -57,5 +57,70 @@ class Accomodations
      */
     private $totalVotes;
 
+    public function getIdAccomodation(): ?int
+    {
+        return $this->idAccomodation;
+    }
+
+    public function getName(): ?int
+    {
+        return $this->name;
+    }
+
+    public function setName(int $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getNumberOfRooms(): ?int
+    {
+        return $this->numberOfRooms;
+    }
+
+    public function setNumberOfRooms(int $numberOfRooms): self
+    {
+        $this->numberOfRooms = $numberOfRooms;
+
+        return $this;
+    }
+
+    public function getTotalStars(): ?int
+    {
+        return $this->totalStars;
+    }
+
+    public function setTotalStars(?int $totalStars): self
+    {
+        $this->totalStars = $totalStars;
+
+        return $this;
+    }
+
+    public function getTotalVotes(): ?int
+    {
+        return $this->totalVotes;
+    }
+
+    public function setTotalVotes(?int $totalVotes): self
+    {
+        $this->totalVotes = $totalVotes;
+
+        return $this;
+    }
+
 
 }

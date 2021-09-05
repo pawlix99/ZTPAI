@@ -17,14 +17,15 @@ class Profile extends Component{
 
     componentDidMount() {
         const id = localStorage.getItem("user");
-        axios.get('http://localhost:8000/api/users/'+ id).then(user => {
+        axios.get('http://localhost:8000/user/' +id).then(user => {
             this.setState({
-                name: user.data.name,
-                surname: user.data.surname,
-                email: user.data.email,
-                phone:  user.data.phone,
-                address: user.data.address
+                name: user.data[0].name,
+                surname: user.data[0].surname,
+                email: user.data[0].email,
+                phone:  user.data[0].phone,
+                address: user.data[0].address
             });
+            console.log(user.data);
         });
     }
     render() {
@@ -33,18 +34,16 @@ class Profile extends Component{
                 <NavBar/>
                 <div className={"container"}>
                     <div className="profile">
-                        <h1>Personal informations</h1>
+                        <p className={"personal-informations"}>Personal informations</p>
                         <form action={"/profile/edit"}>
-                        <div className={"informations"}>
-                            <h2>Name: {this.state.name}</h2>
-                            <h2>Surname: {this.state.surname}</h2>
-                            <h2>E-mail: {this.state.email}</h2>
-                            <h2>Phone number: {this.state.phone}</h2>
-                            <h2>Adress: {this.state.address}</h2>
-                        </div>
-                        <button type={"submit"}>
-                            Edit informations
-                        </button>
+                            <div className={"informations"}>
+                                <h2 style={{marginBottom:15, fontSize:2.5+'vw'}}>Name: {this.state.name}</h2>
+                                <h2 style={{marginBottom:15, fontSize:2.5+'vw'}}>Surname: {this.state.surname}</h2>
+                                <h2 style={{marginBottom:15, fontSize:2.5+'vw'}}>E-mail: {this.state.email}</h2>
+                                <h2 style={{marginBottom:15, fontSize:2.5+'vw'}}>Phone number: {this.state.phone}</h2>
+                                <h2 style={{marginBottom:15, fontSize:2.5+'vw'}}>Adress: {this.state.address}</h2>
+                                <button type="submit" className="btn btn-primary mx-sm-3 mb-2">Edit informations</button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -57,7 +57,7 @@ class Register extends Component{
             <div className={"login"}>
                 <img src={logo} alt={"logo"} />
                 <div className={"authorization"}>
-                    <form encType="multipart/form-data" method="POST" onSubmit={this.handleSubmit}>
+                    <form className="form-inline" encType="multipart/form-data" method="POST" onSubmit={this.handleSubmit}>
                         <h2>E-mail</h2>
                         <input name="email" type="text" onChange={this.handleChange}/>
                         <h2>Password</h2>
@@ -70,9 +70,9 @@ class Register extends Component{
                         <input name="phone" type="text" onChange={this.handleChange}/>
                         <h2>Address</h2>
                         <input name="address" type="text" onChange={this.handleChange}/>
-                        <button type={"submit"}>Register</button>
+                        <button className="btn btn-primary mx-sm-3 mb-2" style={{width: 100 + 'px', marginTop: 10 + 'px'}} type={"submit"}>Register</button>
                     </form>
-                    <Link to="/login">Login</Link>
+                    <Link className="btn btn-primary mx-sm-3 mb-2" style={{width: 100 + 'px', marginTop: 10 + 'px'}} to="/login">Login</Link>
                 </div>
             </div>
         );}

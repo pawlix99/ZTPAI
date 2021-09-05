@@ -20,13 +20,13 @@ class EditProfile extends Component{
 
     componentDidMount() {
         const id = localStorage.getItem('user')
-        axios.get('http://localhost:8000/api/users/'+ id).then(user => {
+        axios.get('http://localhost:8000/user/'+ id).then(user => {
             this.setState({
-                name: user.data.name,
-                surname: user.data.surname,
-                email: user.data.email,
-                phone:  user.data.phone,
-                address: user.data.address
+                name: user.data[0].name,
+                surname: user.data[0].surname,
+                email: user.data[0].email,
+                phone:  user.data[0].phone,
+                address: user.data[0].address
             });
         });
     }
@@ -66,10 +66,8 @@ class EditProfile extends Component{
                             <h2>E-mail: <input name="email" value={this.state.email} onChange={this.handleChange}/></h2>
                             <h2>Phone number: <input name="phone" value={this.state.phone} onChange={this.handleChange}/></h2>
                             <h2>Adress: <input name="address" value={this.state.address} onChange={this.handleChange}/></h2>
+                            <button type="submit" className="btn btn-primary mx-sm-3 mb-2">Save</button>
                         </div>
-                        <button type={"submit"}>
-                            Save
-                        </button>
                     </form>
                 </div>
             </div>

@@ -8,14 +8,11 @@ function NavBar() {
         window.location.href = "/login";
     }
     return(
-        <nav>
+        <nav className={"Navbar"}>
             <img src={logo}></img>
             <ul>
                 <li>
                     <Link to="/">HOME</Link>
-                </li>
-                <li>
-                    <Link to="/sale">SALE</Link>
                 </li>
                 <li>
                     <Link to="/history">HISTORY</Link>

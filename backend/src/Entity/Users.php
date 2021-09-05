@@ -2,24 +2,25 @@
 
 namespace App\Entity;
 
-use App\Repository\UsersRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Users
  *
  * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="users_id_user_uindex", columns={"id_user"})})
- * @ORM\Entity(repositoryClass=UsersRepository::class)
- * @ApiResource()
- *
+ * @ORM\Entity
+ * @ApiResource
+ * @method string getUserIdentifier()
  */
 class Users implements UserInterface
 {
     /**
      * @var int
      *
+     * @OneToMany(targetEntity="Reservations", mappedBy="idUser")
      * @ORM\Column(name="id_user", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
@@ -37,173 +38,134 @@ class Users implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=50, nullable=false)
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="surname", type="string", length=50, nullable=false)
+     * @ORM\Column(name="surname", type="string", length=255, nullable=false)
      */
     private $surname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=50, nullable=false)
-     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=15, nullable=false)
+     * @ORM\Column(name="phone", type="string", length=255, nullable=false)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=150, nullable=false)
+     * @ORM\Column(name="address", type="string", length=255, nullable=false)
      */
     private $address;
 
-    /**
-     * @return int
-     */
-    public function getIdUser(): int
+    public function getIdUser(): ?int
     {
         return $this->idUser;
     }
 
-    /**
-     * @param int $idUser
-     */
-    public function setIdUser(int $idUser): void
-    {
-        $this->idUser = $idUser;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRole(): string
+    public function getRole(): ?string
     {
         return $this->role;
     }
 
-    /**
-     * @param string $role
-     */
-    public function setRole(string $role): void
+    public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password): void
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
+    public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getSurname(): string
+    public function getSurname(): ?string
     {
         return $this->surname;
     }
 
-    /**
-     * @param string $surname
-     */
-    public function setSurname(string $surname): void
+    public function setSurname(string $surname): self
     {
         $this->surname = $surname;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    /**
-     * @param string $phone
-     */
-    public function setPhone(string $phone): void
+    public function setPhone(string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
-    /**
-     * @param string $address
-     */
-    public function setAddress(string $address): void
+    public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
     }
+
 
     public function getRoles()
     {
@@ -223,5 +185,10 @@ class Users implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function __call(string $name, array $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
     }
 }

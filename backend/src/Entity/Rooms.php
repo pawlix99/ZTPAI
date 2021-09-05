@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * Rooms
  *
- * @ORM\Table(name="rooms", uniqueConstraints={@ORM\UniqueConstraint(name="rooms_id_room_uindex", columns={"id_room"})}, indexes={@ORM\Index(name="IDX_7CA11A9671CCF4C1", columns={"id_accomodation"}), @ORM\Index(name="IDX_7CA11A96DC47C32F", columns={"id_type_of_room"})})
+ * @ORM\Table(name="rooms", uniqueConstraints={@ORM\UniqueConstraint(name="rooms_id_room_uindex", columns={"id_room"})}, indexes={@ORM\Index(name="IDX_7CA11A9671CCF4C1", columns={"id_accommodation"})})
  * @ORM\Entity
+ * @ApiResource
  */
 class Rooms
 {
@@ -25,29 +27,33 @@ class Rooms
     /**
      * @var float
      *
-     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="price", type="integer", nullable=false)
      */
-    private $price;
+    public $price;
 
     /**
-     * @var \Accomodations
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Accomodations")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_accomodation", referencedColumnName="id_accomodation")
-     * })
+     * @ORM\Column(name="number_of_people", type="integer", nullable=false)
      */
-    private $idAccomodation;
+    public $numberOfPeople;
 
     /**
-     * @var \TypeOfRoom
+     * @var \Accommodations
      *
-     * @ORM\ManyToOne(targetEntity="TypeOfRoom")
+     * @ORM\ManyToOne(targetEntity="Accommodations")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_type_of_room", referencedColumnName="id_type_of_room")
+     *   @ORM\JoinColumn(name="id_accommodation", referencedColumnName="id_accommodation")
      * })
      */
-    private $idTypeOfRoom;
+    private $idAccommodation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     */
+    private $image;
 
     public function getIdRoom(): ?int
     {
@@ -66,28 +72,44 @@ class Rooms
         return $this;
     }
 
-    public function getIdAccomodation(): ?Accomodations
+    public function getNumberOfPeople(): ?int
     {
-        return $this->idAccomodation;
+        return $this->numberOfPeople;
     }
 
-    public function setIdAccomodation(?Accomodations $idAccomodation): self
+    public function setNumberOfPeople(int $numberOfPeople): self
     {
-        $this->idAccomodation = $idAccomodation;
+        $this->numberOfPeople = $numberOfPeople;
 
         return $this;
     }
 
-    public function getIdTypeOfRoom(): ?TypeOfRoom
+    public function getIdAccommodation(): ?Accommodations
     {
-        return $this->idTypeOfRoom;
+        return $this->idAccommodation;
     }
 
-    public function setIdTypeOfRoom(?TypeOfRoom $idTypeOfRoom): self
+    public function setIdAccommodation(?Accommodations $idAccommodation): self
     {
-        $this->idTypeOfRoom = $idTypeOfRoom;
+        $this->idAccommodation = $idAccommodation;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
     }
 
 

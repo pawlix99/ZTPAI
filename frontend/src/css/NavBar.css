@@ -30,10 +30,15 @@ img {
     height: 80%;
 }
 
+ul {
+    margin: 0;
+}
+
 li {
     display: inline;
     padding-left: 10%;
     color: white;
+    text-decoration: none;
 }
 
 nav > a, li > a {
@@ -41,6 +46,15 @@ nav > a, li > a {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     color: white;
+}
+
+nav > a:hover {
+    color: #999999;
+}
+
+nav > ul > li > a:hover {
+    text-decoration: none!important;
+    color: #999999;
 }
 
 .react-icons {

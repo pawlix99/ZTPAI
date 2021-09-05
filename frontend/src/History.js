@@ -1,55 +1,56 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './css/History.css';
-import Kraków from './img/Kraków.jpg';
-import Warszawa from './img/Warszawa.jpg';
 import NavBar from "./NavBar";
+import axios from "axios";
 
-function History() {
-  return (
-      <div className={"App"}>
-        <NavBar />
-        <div className={"container"}>
-          <div className="history">
-            <h1>Your reservations</h1>
-            <div className="reservations">
-              <div className="reservation">
-                <img src={Kraków}></img>
-                <div className="place">
-                  <h1>Kraków</h1>
-                </div>
-                <div className="reservationDate">
-                  <span>13.01.2021</span>
-                  <span> - </span>
-                  <span>18.01.2021</span>
-                </div>
-              </div>
-              <div className="reservation">
-                <img src={Warszawa}></img>
-                <div className="place">
-                  <h1>Warszawa</h1>
-                </div>
-                <div className="reservationDate">
-                  <span>05.11.2020</span>
-                  <span> - </span>
-                  <span>12.11.2020</span>
-                </div>
-              </div>
-              <div className="reservation">
-                <img src={Kraków}></img>
-                <div className="place">
-                  <h1>Kraków</h1>
-                </div>
-                <div className="reservationDate">
-                  <span>20.07.2020</span>
-                  <span> - </span>
-                  <span>30.07.2020</span>
-                </div>
+class History extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reservations: [],
+    }
+  }
+
+  componentDidMount() {
+    const id = localStorage.getItem('user')
+    axios.get('http://localhost:8000/reservations/'+ id)
+        .then(res => {
+          this.setState({reservations: res.data});
+          console.log(this.state.reservations);
+        });
+  }
+
+  render() {
+    return (
+        <div className={"App"}>
+          <NavBar />
+          <div className={"container"}>
+            <div className="history">
+              <h1>Your reservations</h1>
+              <div className="reservations">
+                {this.state.reservations.map(res =>
+                    <div className={"reservation"} >
+                      <img src={require("./img/" + res.image).default}/>
+                      <div className="place">
+                        <h2>{res.name}</h2>
+                          <h5>{res.address}</h5>
+                      </div>
+                        <div className={'room-info'}>
+                            <h5>Room for {res.numberOfPeople} people</h5>
+                            <h6>Price: {res.price} PLN/night</h6>
+                        </div>
+                      <div className="reservationDate">
+                          <h6>From: {res.sinceWhen}</h6>
+                          <h6>To: {res.untilWhen}</h6>
+                      </div>
+                    </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      </div>
-  );
+    );
+  }
 }
 
 export default History;

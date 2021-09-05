@@ -31,6 +31,14 @@
 }
 
 .place {
-    padding-left: 15%;
-    width: 40%;
+    padding-left: 5%;
+    width: 25%;
+}
+
+.room-info {
+    padding: 0 3%;
+}
+
+.reservationDate {
+    padding: 7%;
 }

@@ -50,14 +50,14 @@ class Login extends Component{
         <div className={"login"}>
             <img src={logo}></img>
             <div className={"authorization"}>
-                <form encType="multipart/form-data" method="POST" onSubmit={this.handleSubmit}>
-                    <h2>Username</h2>
-                    <input name="email" type="text" onChange={this.handleChange}/>
-                    <h2>Password</h2>
-                    <input name="password" type="password" onChange={this.handleChange}/>
-                    <button type={"submit"}>Login</button>
+                <form className="form-inline" encType="multipart/form-data" method="POST" onSubmit={this.handleSubmit}>
+                        <h2>Username</h2>
+                        <input name="email" type="text" onChange={this.handleChange}/>
+                        <h2>Password</h2>
+                        <input name="password" type="password" onChange={this.handleChange}/>
+                        <button className="btn btn-primary mx-sm-3 mb-2" style={{width: 100 + 'px', marginTop: 10 + 'px'}}type={"submit"}>Login</button>
                 </form>
-                <Link to="/register">Register</Link>
+                <Link className="btn btn-primary mx-sm-3 mb-2" style={{width: 100 + 'px', marginTop: 10 + 'px'}} to="/register">Register</Link>
             </div>
         </div>
     );}

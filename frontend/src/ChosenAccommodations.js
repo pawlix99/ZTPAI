@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 
-class Home extends Component{
+class ChosenAccommodations extends Component{
     constructor() {
         super();
         this.state = {
@@ -18,23 +18,19 @@ class Home extends Component{
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/api/accommodations',{
-            headers: {
-                'Content-Type':  'application/json',
-                'Access-Control-Allow-Origin': '*'
-            }
-        })
+        axios.get(`http://localhost:8000/${this.props.match.params.place}/${this.props.match.params.begin}/${this.props.match.params.end}`)
             .then(res => {
-                this.setState({accommodations: res.data['hydra:member']})
-                console.log(this.state.accommodations);
+                this.setState({accommodations: res.data})
+                this.setState({place: this.props.match.params.place});
+                this.setState({begin: this.props.match.params.begin});
+                this.setState({end: this.props.match.params.end});
             });
-        }
+    }
 
     handleChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-
 
         this.setState({
             [name]: value
@@ -51,25 +47,28 @@ class Home extends Component{
             <div className={"App"}>
                 <NavBar/>
                 <div className="container">
-                    <div className={"home"}>
+                    <div className={"chosenAccommodations"}>
                         <div className="search-window">
-                            <form class="form-inline" onSubmit={this.handleSubmit}>
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <input className="form-control" type="text" name="place" placeholder={"Where are you going?"} onChange={this.handleChange} required/>                                </div>
-                                <div class="form-group mx-sm-3 mb-2" style={{marginRight:'0'}}>
-                                    <span style={{marginRight:10+'px'}}>From:</span>
-                                    <input type="date" className="form-control" name="begin" onChange={this.handleChange} required/>
+                            <form className="form-inline" onSubmit={this.handleSubmit}>
+                                <div className="form-group mx-sm-3 mb-2">
+                                    <input className="form-control" type="text" name="place"
+                                           value={this.state.place} onChange={this.handleChange}/></div>
+                                <div className="form-group mx-sm-3 mb-2" style={{marginRight: '0'}}>
+                                    <span style={{marginRight: 10 + 'px'}}>From:</span>
+                                    <input type="date" className="form-control" name="begin"
+                                           value={this.state.begin} onChange={this.handleChange}/>
                                 </div>
                                 <div className="form-group mx-sm-3 mb-2">
-                                    <span style={{marginRight:10+'px'}}>To:</span>
-                                    <input type="date" className="form-control" name="end" onChange={this.handleChange} required/>
+                                    <span style={{marginRight: 10 + 'px'}}>To:</span>
+                                    <input type="date" className="form-control" name="end"
+                                           value={this.state.end} onChange={this.handleChange}/>
                                 </div>
-                                <button type="submit" class="btn btn-primary mx-sm-3 mb-2">Find</button>
+                                <button type="submit" className="btn btn-primary mx-sm-3 mb-2">Find</button>
                             </form>
                         </div>
                         <div className={"accommodations"}>
                             {this.state.accommodations.map(accommodation =>
-                                <NavLink to={`/accommodation/${accommodation.idAccommodation}`}>
+                                <NavLink to={`/accommodation/${accommodation.idAccommodation}/${this.props.match.params.begin}/${this.props.match.params.end}`}>
                                     <div className={"accommodation"} key={accommodation.id}>
                                         <img src={require('./img/' + accommodation.image).default}/>
                                         <div>
@@ -78,7 +77,7 @@ class Home extends Component{
                                         </div>
                                     </div>
                                 </NavLink>
-                                )}
+                            )}
                         </div>
                     </div>
                 </div>
@@ -87,4 +86,4 @@ class Home extends Component{
     }
 }
 
-export default Home;
+export default ChosenAccommodations;

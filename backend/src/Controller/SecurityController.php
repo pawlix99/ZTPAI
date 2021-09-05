@@ -17,8 +17,11 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/auth/register", name="register", methods={"POST"})
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @return JsonResponse
      */
-    public function register(Request $request, UserPasswordEncoderInterface $encoder)
+    public function register(Request $request, UserPasswordEncoderInterface $encoder): JsonResponse
     {
         $postData = json_decode($request->getContent());
 

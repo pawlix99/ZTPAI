@@ -1,30 +1,37 @@
 .home {
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.search-window>h1 {
-    margin: 0;
-    padding-top: 5%;
+.chosenAccommodations {
+    height: 100%;
 }
 
 form {
     padding-bottom: 5%;
 }
 
-input {
-    margin-top: 5%;
+span {
+    color: black;
+}
+
+.container {
+    overflow: auto;
+    padding: 0;
 }
 
 .search-window {
-    background-color: black;
+    background-color: white;
     color: white;
-    width: 40%;
-    height: auto;
-    border: solid 10px gray;
-    text-align: center;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-inline {
+    padding: 0;
 }
 
 .button {
@@ -33,5 +40,64 @@ input {
     color: white;
     border: 0;
     height: 3vh;
+    width: 10%;
+    cursor: pointer;
+}
+
+.accommodations, .rooms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3%;
+    padding: 3%;
+}
+
+.accommodation, .room {
+    background-color: white;
+    border: 1px solid gray;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.accommodation>img, .room>img {
+    box-shadow: 0px 1px 1px #00000040;
+    border: 1px solid #707070;
+    padding: 0;
+    height: 90%;
+    width: 30%;
+    margin-left: 1%;
+}
+
+.accommodation>div, room>div {
+    margin-left: 5%;
+}
+
+.accommodations>a, .rooms>a {
+    text-decoration: none;
+    color: black;
+}
+
+.roomDescription {
+    padding: 0 5%;
+}
+
+.singleRoom {
+    margin: 5%;
+}
+
+.roomDetails {
+    display: flex;
+    flex-direction: row;
+}
+
+.roomDetails > img {
     width: 40%;
+}
+
+.reservationInfo {
+    color: red;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
 }
